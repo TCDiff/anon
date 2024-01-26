@@ -25,7 +25,7 @@
         header h1 {
           margin: 0;
           font-size: 40px;
-        }    /* 标题 */
+        }    
     
         main {
           padding: 20px;
@@ -96,26 +96,20 @@
         }
     
         .video-container {
-            /* Set a specific width or use flex-basis if you want equal widths for all videos */
-            /* 设置flex-basis为45%，允许两个视频容器在一行上平分空间 */
-            /* flex: 1 1 45%;  */
-            max-width: calc(33.333% - 20px); /* Adjust the percentage as needed to fit three across, minus the gap */
-            padding: 0px; /* Reset any padding you may have */
+            padding: 0 20px; /* Reset any padding you may have */
             box-sizing: border-box; /* Makes sure the padding and border are included in the width */
             margin-bottom: 0px; /* Adjust as needed */
             margin-top: 0px;
-            /* 每个视频容器的宽度是100%的slider宽度 */
-            /* flex: 0 0 100%; */
+            position: relative; /* 设置为相对定位，为导航按钮的绝对定位提供参照 */
+            width: 100%; /* 设为100%以适应父容器 */
+            overflow: hidden; /* 隐藏超出部分 */
+            display: flex;
         }
-
-        /* .two-videos .video-container {
-            flex: 1 0 calc(50% - 10px); 
-        }  
-        */
 
         .video-container video {
           width: 100%;  /* 视频宽度填满容器宽度 */
           height: auto;  /* 高度自动调整以保持宽高比 */
+          border-radius: 10px; /*圆角*/
         }
     
         .video-container .subtitle {
@@ -129,7 +123,7 @@
             flex-wrap: wrap;
             justify-content: center; /* Center items in the wrapper (affects single items too) */
             align-items: flex-start; /* This will align videos to the top */
-            gap: 0px; /* This adds space between the videos */
+            gap: 10px; /* This adds space between the videos */
             max-width: 1200px; 
             margin: 0 auto; /* Centers the wrapper in the parent */
         }
@@ -149,27 +143,109 @@
             max-width: 400px;
         }
 
-        table {
+        /* table {
           margin: 0 auto;
           max-width: 60%;
-        }
-    
-        canvas {
-          border: 1px solid black;
-        }
+        } */
 
-        .scroll-container {
-            /* Enable scroll snap */
+        /* 垂直滑块
+       .scroll-container {
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
-            height: 600px; /* Limit the height of the container */
+            height: 600px; 
         }
 
         .scroll-page {
             scroll-snap-stop: always;
-            height: 600px; /* Each page has a height of the viewport */
+            height: 600px; 
+        } */
+
+        /* 水平滑块 */
+        .slider {
+            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            z-index: 2;
         }
-        
+
+        .slider-container {
+            display: flex; /* 使用flex布局使子元素水平排列 */
+            transition: all 300ms ease; /* 平滑过渡动画 */
+            gap: 10px; /* 设置子项之间的间隔 */
+        }
+
+        .slider-item {
+            flex: 0 0 auto; /* 防止视频被拉伸或压缩 */
+        }
+
+        .slider-navigation-previous,
+        .slider-navigation-next {
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); /* 使用transform使SVG垂直居中对齐 */
+            z-index: 10;
+            cursor: pointer; /* 悬停时鼠标显示手型 */
+            background-color: #ffffff; /* 背景色 */
+            border-radius: 50%; /* 圆形 */
+            width: 30px; /* 宽度 */
+            height: 30px; /* 高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease; /* 添加平滑变换效果 */
+        }
+
+        .slider-navigation-previous {
+            left: 0px; /* 左箭头的位置 */
+        }
+
+        .slider-navigation-next {
+            right: 0px; /* 右箭头的位置 */
+        }
+
+        .slider-navigation-previous svg,
+        .slider-navigation-next svg {
+            width: 15px; 
+            height: 15px;
+            fill: rgb(85, 85, 85); 
+            transition: transform 0.3s ease; /* 添加平滑变换效果 */
+        }
+
+        /* 鼠标悬停放大图标 */
+        .slider-navigation-previous:hover svg,
+        .slider-navigation-next:hover svg,
+        .slider-pagination .slider-page:hover {
+            transform: scale(1.1); 
+        }
+
+        .slider-navigation-previous:hover,
+        .slider-navigation-next:hover {
+            background-color: #ddd; /* 鼠标悬停效果 */
+        }
+
+        /* 分页指示器 */
+        .slider-pagination {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .slider-pagination .slider-page {
+            background-color: #FFF;
+            width: 10px;  
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: transform 300ms ease;
+            cursor: pointer; 
+        }
+
+        .slider-pagination .slider-page.is-active {
+            transform: scale(1.3);
+        }
+
         @media only screen and (max-width: 768px) {
             .video-wrapper {
                 flex-direction: column;
@@ -222,19 +298,18 @@
 
 <body>
     <header>
-      <h1>Controllable Motion Diffusion Model</h1>
+      <h1>Group Choreography Generation via <br> Trajectory Controllable Diffusion</h1>
       <h3>Anonymous Authors</h3>
-
         <div class="buttons" style="margin-bottom: 8px;">
-            <a class="btn text-light" role="button" href="https://wanluzhu.github.io/">
+            <a class="btn text-light" role="button" href="https://github.com/TCDiffusion/TCDiffusion.github.io">
                 <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
                     <path fill="white" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
                 </svg>Paper
             </a>
-            <a class="btn text-light" role="button" href="https://wanluzhu.github.io/">
+            <a class="btn text-light" role="button" href="https://github.com/TCDiffusion/TCDiffusion.github.io">
                 <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24"><path fill="white" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>Code
             </a>
-            <a class="btn text-light" role="button" href="https://wanluzhu.github.io/">
+            <a class="btn text-light" role="button" href="https://github.com/TCDiffusion/TCDiffusion.github.io">
                 <svg class="svg-inline--fa fa-rocket fa-w-16" style="width:24px;height:24px;margin-left:-12px;margin-right:12px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rocket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505.12019,19.09375c-1.18945-5.53125-6.65819-11-12.207-12.1875C460.716,0,435.507,0,410.40747,0,307.17523,0,245.26909,55.20312,199.05238,128H94.83772c-16.34763.01562-35.55658,11.875-42.88664,26.48438L2.51562,253.29688A28.4,28.4,0,0,0,0,264a24.00867,24.00867,0,0,0,24.00582,24H127.81618l-22.47457,22.46875c-11.36521,11.36133-12.99607,32.25781,0,45.25L156.24582,406.625c11.15623,11.1875,32.15619,13.15625,45.27726,0l22.47457-22.46875V488a24.00867,24.00867,0,0,0,24.00581,24,28.55934,28.55934,0,0,0,10.707-2.51562l98.72834-49.39063c14.62888-7.29687,26.50776-26.5,26.50776-42.85937V312.79688c72.59753-46.3125,128.03493-108.40626,128.03493-211.09376C512.07526,76.5,512.07526,51.29688,505.12019,19.09375ZM384.04033,168A40,40,0,1,1,424.05,128,40.02322,40.02322,0,0,1,384.04033,168Z"></path></svg>
                 Demo
             </a>
@@ -254,12 +329,14 @@
 
     <main>
         <h2 style="text-align: center;">Generate Result</h2>
-        <div class="scroll-container">
+        <!-- 垂直滑块 -->
+        <!-- <div class="scroll-container">
             <div class="scroll-page">
                 <h3 style="text-align: center;">2-Dancers</h3>
                 <div class="video-wrapper">
                     <div class="video-container">
-                        <video autoplay loop muted controls>      <!-- 自动静音播放，放完自动重播 -->
+                        自动静音播放，放完自动重播
+                        <video autoplay loop muted controls>      
                             <source src="resources/0070-0250.mkv" type="video/mp4">
                         </video>
                     </div>
@@ -330,8 +407,336 @@
                 </div>
                 <p><br><br></p>
             </div>
-        </div>
+        </div> -->
         
+        <!-- 水平滑块 -->
+        <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">2</span>-Dancers</h3>
+        <div class="video-container">
+            <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-navigation-previous">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-navigation-next">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-pagination">
+                <div class="slider-page" data-index="0"></div>
+                <div class="slider-page" data-index="1"></div>
+                <div class="slider-page" data-index="2"></div>
+                <div class="slider-page" data-index="3"></div>
+                <div class="slider-page" data-index="4"></div>
+                <div class="slider-page" data-index="5"></div>
+            </div>
+        </div>
+
+        <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">3</span>-Dancers</h3>
+        <div class="video-container">
+            <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/3-1.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/3_2.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/3_3.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/3_4.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources/0070-0250.mkv" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="slider-navigation-previous">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-navigation-next">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-pagination">
+                <div class="slider-page" data-index="0"></div>
+                <div class="slider-page" data-index="1"></div>
+                <div class="slider-page" data-index="2"></div>
+                <div class="slider-page" data-index="3"></div>
+                <!-- <div class="slider-page" data-index="4"></div>
+                <div class="slider-page" data-index="5"></div> -->
+            </div>
+        </div>
+
+        <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">4</span>-Dancers</h3>
+        <div class="video-container">
+            <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\interaction\g4i35e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\interaction\g4i324e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\interaction\g4i529e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\g410e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\g413e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-4\g416e.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-navigation-previous">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-navigation-next">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-pagination">
+                <div class="slider-page" data-index="0"></div>
+                <div class="slider-page" data-index="1"></div>
+                <div class="slider-page" data-index="2"></div>
+                <div class="slider-page" data-index="3"></div>
+                <div class="slider-page" data-index="4"></div>
+                <div class="slider-page" data-index="5"></div>
+            </div>
+        </div>
+
+        <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">5</span>-Dancers</h3>
+        <div class="video-container">
+            <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5gi25.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g86.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g115.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g312.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g414.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g96悬浮.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                    <div class="item 100">
+                        <div class="video">
+                            <video autoplay loop muted controls>
+                                <source src="resources\generate-5\g5g418悬浮.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-navigation-previous">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-navigation-next">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                    <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                </svg>
+            </div>
+            <div class="slider-pagination">
+                <div class="slider-page" data-index="0"></div>
+                <div class="slider-page" data-index="1"></div>
+                <div class="slider-page" data-index="2"></div>
+                <div class="slider-page" data-index="3"></div>
+                <div class="slider-page" data-index="4"></div>
+                <div class="slider-page" data-index="5"></div>
+                <div class="slider-page" data-index="6"></div>
+            </div>
+        </div>
+
+        <!-- 没有滑块 -->
         <!-- <table>
             <tbody>
                 <tr>
@@ -410,14 +815,161 @@
         <section>    
             <h2 style="text-align: center;">Controllability</h2>
             <h3 style="text-align: center;">Lineup Control</h3>
-            <div class="image-container">
-                <img src="resources/fig_0.png" width="1200" height="400" alt="Image 2">
-                <div class="subtitle">A-MDM: An auto-regressive motion diffusion model, COMODO: A pipeline for controllable motion synthesis that supports RL based controllers and inpainting simultaneously. </div>
+            <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">4</span>-Dancers</h3>
+            <div class="video-container">
+                <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                    <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-4\c4b512e.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-4\c4121e.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-4\c4123e.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-4\c4125e不是很好.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-4\c4128e足部不行.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-navigation-previous">
+                    <svg viewBox="0 0 50 80" xml:space="preserve">
+                        <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                    </svg>
+                </div>
+                <div class="slider-navigation-next">
+                    <svg viewBox="0 0 50 80" xml:space="preserve">
+                        <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                    </svg>
+                </div>
+                <div class="slider-pagination">
+                    <div class="slider-page" data-index="0"></div>
+                    <div class="slider-page" data-index="1"></div>
+                    <div class="slider-page" data-index="2"></div>
+                    <div class="slider-page" data-index="3"></div>
+                    <div class="slider-page" data-index="4"></div>
+                </div>
             </div>
-            <p><br><br></p>
-            <div class="image-container">
-                <img src="resources/fig_0.png" alt="Image 3" width="600" height="500">
-                <div class="subtitle">The controllers are trained with RL to perform motion-inpainting on the base model. For a motion frame x, the controllers intervene in the classic DDPM denoising process by predicting dx and make x0 = x0+dx during a few pre-determined steps.</div>
+
+            <h3 style="text-align: center;"><span style="color: rgb(130, 130, 244);">5</span>-Dancers</h3>
+            <div class="video-container">
+                <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
+                    <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c51011有走位有互动.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c555.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c591.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c5518.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c5613.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c5716.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
+                        <div class="item 100">
+                            <div class="video">
+                                <video autoplay loop muted controls>
+                                    <source src="resources\controllability-5\c516.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-navigation-previous">
+                    <svg viewBox="0 0 50 80" xml:space="preserve">
+                        <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                    </svg>
+                </div>
+                <div class="slider-navigation-next">
+                    <svg viewBox="0 0 50 80" xml:space="preserve">
+                        <polyline stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                    </svg>
+                </div>
+                <div class="slider-pagination">
+                    <div class="slider-page" data-index="0"></div>
+                    <div class="slider-page" data-index="1"></div>
+                    <div class="slider-page" data-index="2"></div>
+                    <div class="slider-page" data-index="3"></div>
+                    <div class="slider-page" data-index="4"></div>
+                    <div class="slider-page" data-index="5"></div>
+                    <div class="slider-page" data-index="6"></div>
+                </div>
             </div>
         </section>
         <section>
@@ -432,8 +984,155 @@
             <p></p>
         </section>
     </main>  
-    <!-- 可能是为DeepL服务 -->
-    <deepl-input-controller></deepl-input-controller>  
+    
+    <!-- 激活 -->
+    <!-- 一个滑块 -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var currentIndex = 0; // 当前显示的视频索引
+        var sliderItems = document.querySelectorAll('.slider-item');
+        var sliderContainer = document.querySelector('.slider-container');
+        var prevNav = document.querySelector('.slider-navigation-previous');
+        var nextNav = document.querySelector('.slider-navigation-next');
+        var paginationDots = document.querySelectorAll('.slider-page');
+
+        // 设置容器的初始位置
+        function updateSliderPosition() {
+            var newTranslateX = -currentIndex * 448; 
+            sliderContainer.style.transform = `translate3d(${newTranslateX}px, 0px, 0px)`;
+        }
+
+        // 更新分页器的活动点
+        function updatePagination() {
+            paginationDots.forEach(function(dot, index) {
+                if (index === currentIndex) {
+                    dot.classList.add('is-active');
+                } else {
+                    dot.classList.remove('is-active');
+                }
+            });
+        }
+
+        // 上一个按钮点击事件
+        prevNav.addEventListener('click', function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = sliderItems.length - 1; // 添加此行来实现循环
+            }
+            updateSliderPosition();
+            updatePagination();
+        });
+
+        // 下一个按钮点击事件
+        nextNav.addEventListener('click', function() {
+            if (currentIndex < sliderItems.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // 添加此行来实现循环
+            }
+            updateSliderPosition();
+            updatePagination();
+        });
+
+        // 分页器点击事件
+        paginationDots.forEach(function(dot, index) {
+            dot.addEventListener('click', function() {
+                currentIndex = index;
+                updateSliderPosition();
+                updatePagination();
+            });
+        });
+
+        // 初始更新
+        updateSliderPosition();
+        updatePagination();
+    });
+    </script> -->
+
+    <!-- 多个滑块 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 获取所有的滑块容器
+            var sliderContainers = document.querySelectorAll('.video-container');
+
+            // 为每个滑块容器设置独立的功能
+            sliderContainers.forEach(function(container) {
+                var currentIndex = 0; // 当前显示的视频索引
+                var sliderItems = container.querySelectorAll('.slider-item');
+                var sliderContainer = container.querySelector('.slider-container');
+                var prevNav = container.querySelector('.slider-navigation-previous');
+                var nextNav = container.querySelector('.slider-navigation-next');
+                var paginationDots = container.querySelectorAll('.slider-page');
+                var itemWidth = 448; // 假设每个滑块项的宽度为448px
+
+                // 克隆第一个滑块项到末尾
+                sliderItems.forEach(function(item) {
+                    var clone = item.cloneNode(true);
+                    clone.dataset.cloned = "true";
+                    sliderContainer.appendChild(clone);
+                });
+
+                // 更新滑块容器的宽度
+                var totalItems = sliderContainer.querySelectorAll('.slider-item').length;
+                sliderContainer.style.width = `${totalItems * itemWidth}px`;
+
+                //（其余的函数和事件处理程序代码保持不变）
+                // 设置容器的初始位置
+                function updateSliderPosition() {
+                    var newTranslateX = -currentIndex * 448; 
+                    sliderContainer.style.transform = `translate3d(${newTranslateX}px, 0px, 0px)`;
+                }
+
+                // 更新分页器的活动点
+                function updatePagination() {
+                    paginationDots.forEach(function(dot, index) {
+                        if (index === currentIndex) {
+                            dot.classList.add('is-active');
+                        } else {
+                            dot.classList.remove('is-active');
+                        }
+                    });
+                }
+
+                // 上一个按钮点击事件
+                prevNav.addEventListener('click', function() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else {
+                        currentIndex = sliderItems.length - 1; // 添加此行来实现循环
+                    }
+                    updateSliderPosition();
+                    updatePagination();
+                });
+
+                // 下一个按钮点击事件
+                nextNav.addEventListener('click', function() {
+                    if (currentIndex < sliderItems.length - 1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0; // 添加此行来实现循环
+                    }
+                    updateSliderPosition();
+                    updatePagination();
+                });
+
+                // 分页器点击事件
+                paginationDots.forEach(function(dot, index) {
+                    dot.addEventListener('click', function() {
+                        currentIndex = index;
+                        updateSliderPosition();
+                        updatePagination();
+                    });
+                });
+
+                // 初始更新
+                updateSliderPosition();
+                updatePagination();
+            });
+        });
+    </script>
+
 </body>
 
 <div>
