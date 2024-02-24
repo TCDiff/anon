@@ -106,11 +106,11 @@
           border-radius: 10px; 
         }
     
-        .video-container .subtitle {
+        /* .video-container .subtitle {
           margin-top: 10px;
           width: 50%;
           text-align: left;
-        }
+        } */
     
         .video-wrapper {
             display: flex;
@@ -130,37 +130,39 @@
             font-size: 20px;
         }
 
-        .video-container h3 {
+        /* .video-container h3 {
             text-align: center;
             font-size: 24px; 
             margin: 10px 0; 
             max-width: 400px;
-        }
+        } */
 
-        table {
+        /* table {
           margin: 0 auto;
           max-width: 60%;
-        }
-        .scroll-page {
+        } */
+        /* .scroll-page {
             scroll-snap-stop: always;
             height: 600px; 
         } */
 
-        .slider {
+        /* .slider {
             width: 100%;
             position: absolute;
             bottom: 20px;
             z-index: 2;
-        }
+        } */
 
         .slider-container {
             display: flex; 
             transition: all 300ms ease; 
-            gap: 10px; 
+            gap: 10px;
         }
 
         .slider-item {
             flex: 0 0 auto; 
+            width: calc(50% - 5px); 
+            scroll-snap-align: start; 
         }
 
         .slider-navigation-previous,
@@ -316,49 +318,38 @@
         <div class="video-container">
             <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
                 <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-2\g2g14.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-2\g2g14.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
                         <div class="video">
                             <video autoplay loop muted controls>
                                 <source src="resources\generate-2\g2g32.mp4" type="video/mp4">
                             </video>
                         </div>
-                    </div>
                 </div>
-            
                 <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-2\g2g418.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-2\g2g418.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-2\g2g16g.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-2\g2g16g.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-2\g2g95ng.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-2\g2g95ng.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
             </div>
@@ -385,49 +376,38 @@
         <div class="video-container">
             <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
                 <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-3\g340.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-3\g340.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-3\g3121.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-3\g3121.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
-            
                 <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-3\g3214.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-3\g3214.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-3\g3328j.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-3\g3328j.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-3\g3328u.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-3\g3328u.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
             </div>
@@ -454,58 +434,45 @@
         <div class="video-container">
             <div class="slider-container" style="opacity: 1; width: 8512px; transition: all 300ms ease 0s; transform: translate3d(-2240px, 0px, 0px);">
                 <div class="slider-item" data-slider-index="0" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g4i35e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g4i35e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="1" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g4i324e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g4i324e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
-            
                 <div class="slider-item" data-slider-index="2" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g4i529e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g4i529e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g410e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g410e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g413e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g413e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 448px;">
-                    <div class="item 100">
-                        <div class="video">
-                            <video autoplay loop muted controls>
-                                <source src="resources\generate-4\g416e.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                    <div class="video">
+                        <video autoplay loop muted controls>
+                            <source src="resources\generate-4\g416e.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
             </div>
@@ -842,6 +809,22 @@
                 updatePagination();
             });
         });
+
+        function updateSliderItemWidth() {
+            const sliderContainer = document.querySelector('.video-container');
+            const sliderItems = document.querySelectorAll('.slider-item');
+
+            const newWidth = sliderContainer.offsetWidth / 2 - 5; 
+
+            sliderItems.forEach(item => {
+                item.style.width = `${newWidth}px`; 
+            });
+        }
+
+        window.addEventListener('resize', updateSliderItemWidth);
+
+        window.addEventListener('DOMContentLoaded', updateSliderItemWidth);
+
     </script>
 
 </body>
