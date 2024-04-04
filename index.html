@@ -120,12 +120,22 @@
             display: flex;
         }
 
+        .video-container-demo {
+            box-sizing: border-box; 
+            margin: 0 auto; 
+            position: relative; 
+            max-width: 90%; 
+            padding: 0 0; 
+            overflow: hidden; 
+            display: flex;
+        }
+
         .video-container video {
             width: 100%;  
             height: auto;  
             border-radius: 10px; 
         }
-    
+
         .video-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -295,8 +305,8 @@
     </header>
 
     <section>
-        <div class="video-container" style="text-align: center;">
-            <div class="video" style="width: 60%; margin: 0 auto;">
+        <div class="video-container-demo" style="text-align: center;">
+            <div class="video" style="text-align: center; margin: 0 auto;">    
                 <video autoplay loop muted controls>
                     <source src="resources\demo.mp4" type="video/mp4">
                 </video>
@@ -344,13 +354,13 @@
                         </video>
                     </div>
                 </div>
-                <div class="slider-item" data-slider-index="3" data-cloned="true">
+                <!-- <div class="slider-item" data-slider-index="3" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g2g16.mp4" type="video/mp4">
                         </video>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="slider-navigation-previous">
                 <svg viewBox="0 0 50 80" xml:space="preserve">
@@ -366,28 +376,28 @@
                 <div class="slider-page" data-index="0"></div>
                 <div class="slider-page" data-index="1"></div>
                 <div class="slider-page" data-index="2"></div>
-                <div class="slider-page" data-index="3"></div>
+                <!-- <div class="slider-page" data-index="3"></div> -->
             </div>
         </div>
 
         <h4><span style="color: rgb(84, 84, 247);">3</span>-Dancers</h4>
         <div class="video-container">
             <div class="slider-container">
-                <div class="slider-item" data-slider-index="0" data-cloned="true">
+                <!-- <div class="slider-item" data-slider-index="0" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\3.mp4" type="video/mp4">
                         </video>
                     </div>
-                </div>
-                <div class="slider-item" data-slider-index="1" data-cloned="true">
+                </div> -->
+                <div class="slider-item" data-slider-index="0" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g3g40.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
-                <div class="slider-item" data-slider-index="2" data-cloned="true">
+                <div class="slider-item" data-slider-index="1" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g3g328j.mp4" type="video/mp4">
@@ -408,7 +418,7 @@
             <div class="slider-pagination">
                 <div class="slider-page" data-index="0"></div>
                 <div class="slider-page" data-index="1"></div>
-                <div class="slider-page" data-index="2"></div>
+                <!-- <div class="slider-page" data-index="2"></div> -->
             </div>
         </div>
 
@@ -465,7 +475,7 @@
         <h4><span style="color: rgb(84, 84, 247);">5</span>-Dancers</h4>
         <div class="video-container">
             <div class="slider-container">
-                <div class="slider-item" data-slider-index="0" data-cloned="true">                    
+                <!-- <div class="slider-item" data-slider-index="0" data-cloned="true">                    
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\5.mp4" type="video/mp4">
@@ -485,29 +495,29 @@
                             <source src="resources\generate\g5g86.mp4" type="video/mp4">
                         </video>
                     </div>
-                </div>
-                <div class="slider-item" data-slider-index="3" data-cloned="true">
+                </div> -->
+                <div class="slider-item" data-slider-index="1" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g5g115.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
-                <div class="slider-item" data-slider-index="4" data-cloned="true">
+                <div class="slider-item" data-slider-index="2" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g5g312.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
-                <div class="slider-item" data-slider-index="5" data-cloned="true">                       
+                <div class="slider-item" data-slider-index="3" data-cloned="true">                       
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g5g414.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
-                <div class="slider-item" data-slider-index="6" data-cloned="true">
+                <div class="slider-item" data-slider-index="4" data-cloned="true">
                     <div class="video">
                         <video autoplay loop muted controls>
                             <source src="resources\generate\g5g96.mp4" type="video/mp4">
@@ -530,9 +540,9 @@
                 <div class="slider-page" data-index="1"></div>
                 <div class="slider-page" data-index="2"></div>
                 <div class="slider-page" data-index="3"></div>
-                <div class="slider-page" data-index="4"></div>
+                <!-- <div class="slider-page" data-index="4"></div>
                 <div class="slider-page" data-index="5"></div>
-                <div class="slider-page" data-index="6"></div>
+                <div class="slider-page" data-index="6"></div> -->
             </div>
         </div>
     </section>
@@ -661,6 +671,7 @@
         });
 
     </script>
+    
 
 </body>
 
